@@ -9,8 +9,14 @@ PIPELINELOG_FILEPATH="../logs/pipeline.log"
 LASTRUNMARKER_FILEPATH="./last_run"
 
 
-# Archiving
-compgen -G "$PROCESSEDDATA_DIR"*.yaml > /dev/null && mv "$PROCESSEDDATA_DIR"*.yaml "$ARCHIVE_DIR"
+# Archiving – move all previous processed files (except .gitkeep) to archive
+shopt -s nullglob
+for file in "$PROCESSEDDATA_DIR"*; do
+    if [ -f "$file" ] && [ "$(basename "$file")" != ".gitkeep" ]; then
+        mv "$file" "$ARCHIVE_DIR"
+    fi
+done
+shopt -u nullglob
 cat "$PIPELINELOG_FILEPATH" >> "$ARCHIVELOG_FILEPATH"
 ./clean-logs.sh
 
