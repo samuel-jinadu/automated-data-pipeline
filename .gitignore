@@ -1,0 +1,24 @@
+# Generated logs
+logs/pipeline.log
+logs/archive.log
+
+# Processed output (clean + quarantine + YAML summaries)
+data/processed/*
+
+# Archive directory – old metadata and logs accumulate here
+data/archive/*
+
+# Timestamp marker for incremental runs
+scripts/last_run
+
+# Python bytecode / cache
+__pycache__/
+*.py[cod]
+.Python
+env/
+venv/
+
+# IDE / system files 
+.DS_Store
+Thumbs.db
+

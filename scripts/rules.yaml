@@ -1,0 +1,58 @@
+# a column, a condition (not_null, in_range, matches_regex), and an action (skip, quarantine, fail)
+actions:
+  - skip
+  - quarantine
+  - fail
+conditions:
+  - not_null
+  - in_range
+  - matches_regex
+rules:
+  - column: Ship Mode
+    condition: not_null
+    action: quarantine
+  - column: Segment
+    condition: not_null
+    action: quarantine
+  - column: Country
+    condition: not_null
+    action: quarantine
+  - column: City
+    condition: not_null
+    action: quarantine
+  - column: State
+    condition: not_null
+    action: quarantine
+  - column: Postal Code
+    condition: matches_regex
+    regex: '^\d{5}(?:-\d{4})?$'
+    action: quarantine
+  - column: Region
+    condition: not_null
+    action: quarantine
+  - column: Category
+    condition: not_null
+    action: quarantine
+  - column: Sub-Category
+    condition: not_null
+    action: quarantine
+  - column: Sales
+    condition: in_range
+    min: 0
+    max: 23000
+    action: quarantine
+  - column: Quantity
+    condition: in_range
+    min: 1
+    max: 20
+    action: quarantine
+  - column: Discount
+    condition: in_range
+    min: 0
+    max: 1
+    action: quarantine
+  - column: Profit
+    condition: in_range
+    min: -10000
+    max: 10000
+    action: quarantine
